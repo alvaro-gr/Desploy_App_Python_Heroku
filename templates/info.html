@@ -1,0 +1,112 @@
+{% extends "indexloged.html" %}
+{% block title %}<title>Profile</title>{% endblock %}
+{% block head %}
+<script language="javascript">
+	function showLastPages(){
+		$("#buttonShow").hide();
+		$("#buttonHidden").show(400)
+		$("#lastpages").show();
+	}
+
+	function hiddenLastPages(){
+		$("#buttonShow").show(400);
+		$("#buttonHidden").hide();
+		$("#lastpages").hide();
+	}
+
+	function changeFont(){
+		$('body').css('font-family', 'monospace');
+	}
+
+	function increseSize(){
+		$('body').css('font-size', '20px');
+	}
+
+	function decreaseSize(){
+		$('body').css('font-size', '10px');
+	}
+</script>
+{% endblock %}
+{% block content %}
+			</br>
+			</br>
+			<article class="row">
+				<div class="formu registro col-xs-12 col-sm-12 col-md-4 col-lg-4">
+					<form role="form" action="update" method="post">
+					 <div class="form-group">
+							<label for="Username">User Name</label>
+							<input type="text" class="form-control" name="username" value="{{ name }}">
+						</div>
+					 <div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control" name="password"  value="{{ password }}">
+					 </div>
+					 <div class="form-group">
+						 <label for="email">Email</label>
+						 <input type="text" class="form-control" name="email" value="{{ email }}">
+					</div>
+					 <button type="submit" class="btn btn-primary">Update</button>
+				 </form>
+			 </div>
+
+				<div class="lastp col-xs-12 col-sm-12 col-md-4 col-lg-4" id="lastpages">
+					<table border="0">
+						<tr><td><h4>Last pages visited:</h4></td></tr>
+						<tr><td>
+							{% if link1 == 'Home' %}
+								<a href="indexloged">Home</a>
+							{% elif link1 == 'News' %}
+								<a href="news">News</a>
+							{% elif link1 == 'Lawyers' %}
+								<a href="lawyers">Lawyers</a>
+							{% elif link1 == 'Profile' %}
+								<a href="info">Profile</a>
+							{% else %}
+								{{link1}}
+							{% endif %}
+						</td></tr>
+						<tr><td>
+							{% if link2 == 'Home' %}
+								<a href="indexloged">Home</a>
+							{% elif link2 == 'News' %}
+								<a href="news">News</a>
+							{% elif link2 == 'Lawyers' %}
+								<a href="lawyers">Lawyers</a>
+							{% elif link2 == 'Profile' %}
+								<a href="info">Profile</a>
+							{% else %}
+								{{link2}}
+							{% endif %}
+						</td></tr>
+						<tr><td>
+							{% if link3 == 'Home' %}
+								<a href="indexloged">Home</a>
+							{% elif link3 == 'News' %}
+								<a href="news">News</a>
+							{% elif link3 == 'Lawyers' %}
+								<a href="lawyers">Lawyers</a>
+							{% elif link3 == 'Profile' %}
+								<a href="info">Profile</a>
+							{% else %}
+								{{link3}}
+							{% endif %}
+						</td></tr>
+					</table>
+				</div>
+				<div class="botonera col-xs-12 col-sm-12 col-md-4 col-lg-4">
+					<table>
+						<tr><td><h4>Options</h4></td></tr>
+						<tr><td><a href="#" id="buttonShow" onclick="showLastPages()"class="btn btn-primary" role="button">Show Last Pages</a><a href="#" id="buttonHidden" onclick="hiddenLastPages()" class="btn btn-primary" role="button">Hidden Last Pages</a></td>
+							<td><a href="#" id="increseSize" onclick="increseSize()" class="btn btn-primary" role="button">Increase Font Size</a></td></tr>
+						<tr><td><a href="removeuser" id="deleteAccount"  class="btn btn-primary" role="button">Delete Account</a></td>
+							<td><a href="#" id="decreaseSize" onclick="decreaseSize()" class="btn btn-primary" role="button">Decrease Font Size</a></td></tr>
+						<tr><td><a href="#" id="changeFont" onclick="changeFont()" class="btn btn-primary" role="button">Change Type Letter</a></td></tr>
+					</table>
+				</div>
+			</article>
+		</br>
+
+		</br>
+		</br>
+		</br>
+{% endblock %}

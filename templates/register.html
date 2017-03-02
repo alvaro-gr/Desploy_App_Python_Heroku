@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block header %}
+	<header>
+	    <nav class="navbar navbar-inverse navbar-fixed-top cabecera">
+				<div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a href="index"><img src="../static/images/logo.png" alt="LOGO" height="52" width="362"></a>
+	        </div>
+	        <div id="navbar" class="navbar-collapse collapse navegacion">
+						<ul class="nav navbar-nav">
+							<li><a href="index">Home</a></li>
+						</ul>
+	        </div><!--/.navbar-collapse -->
+					</div>
+	    </nav>
+	</header>
+{% endblock %}
+
+{% block content %}
+		<article class="row registro">
+				<form role="form" action="registerlogin" method="post" class="registro">
+				 <h3>Register</h3>
+  			 <div class="form-group">
+    				<label for="Username">User Name</label>
+    				<input type="text" class="form-control" name="username">
+  				</div>
+  			 <div class="form-group">
+    	 			<label for="password">Password</label>
+    				<input type="password" class="form-control" name="password">
+  			 </div>
+				 <div class="form-group">
+					 <label for="email">Email</label>
+					 <input type="text" class="form-control" name="email">
+				</div>
+				 <button type="submit" class="btn btn-primary">Check In</button>
+			 </form>
+		</article>
+
+	</br>
+	</br>
+	</br>
+{% endblock %}

@@ -1,0 +1,13 @@
+
+
+Flask==0.11.1
+gunicorn==19.6.0
+Jinja2==2.8
+MarkupSafe==0.23
+pycurl==7.43.0
+pymongo==3.3.1
+requests==2.12.0
+tweepy==3.5.0
+urllib3==1.13.1
+virtualenv==15.0.3
+Werkzeug==0.11.11

@@ -1,0 +1,206 @@
+header {
+   background-color: #4e5944;
+   padding: 10px;
+
+}
+footer{
+  background-color: #4e5944;
+  padding: 8px;
+}
+
+nav.navbar{
+  background-color: #4e5944;
+}
+
+.formu{
+  float: left;
+  border: 0px solid #000;
+}
+
+.lastp{
+  float: left;
+  border: 0px solid #000;
+
+}
+.cabecera {
+  background-color: #4e5944;
+}
+
+.titulo{
+  float: left;
+}
+
+.imagenTitulo{
+  float: right;
+}
+
+.pie{
+    color: white;
+}
+
+.nsession{
+  color: white;
+}
+
+.primero{
+  float: left;
+  border: 0px solid;
+  width: 35%;
+}
+
+.segundo{
+  border: 0px solid;
+  float: left;
+  width: 35%;
+}
+.tercero{
+  border: 0px solid;
+  width: 30%;
+  float: right;;
+}
+
+.enlace{
+  float: right;
+}
+
+.navegacion {
+  float: left;
+  margin-left: 50px;
+}
+
+.registro {
+    width: 400px;
+}
+
+.n1{
+  float: left;
+  width: 50%;
+}
+
+.n2{
+  float: right;
+  width: 50%;
+}
+
+.n3{
+  float: left;
+  width: 50%;
+}
+
+.n4{
+  float: right;
+  width: 50%;
+}
+
+.n5{
+  width: 100%;
+}
+
+.n6{
+  float: left;
+  width: 50%;
+}
+
+.n7{
+  float: right;
+  width: 50%;
+}
+
+.nw1{
+  float:left;
+  width: 50%;
+}
+
+.nw2{
+  float: right;
+  width: 50%;
+}
+
+.nw3{
+  width: 100%:
+}
+
+.nw4{
+  width: 100%:
+}
+
+.nw5{
+  width: 100%:
+}
+
+
+#buttonShow{
+  display: none;
+}
+
+.botonera{
+  float: right;
+  border: 0px solid;
+}
+
+.botonera td{
+  height: 40px;
+  width: 150px;
+  border: 0px solid;
+}
+
+
+.lastp td{
+  float: left;
+  height: 50px;
+  width: 200px;
+  border: 0px solid;
+}
+
+#mapa {
+  border: 0px solid;
+  height: 400px;
+}
+
+#twmaps {
+  border: 1px solid;
+  height: 400px;
+  width: 500px;
+}
+
+#twitter{
+  border: 0px solid;
+  height: 350px;
+}
+
+.twi {
+  border: 0px solid;
+  height: 420px;
+}
+
+.rss {
+  border: 0px solid;
+  height: 650px;
+}
+
+#mapa2{
+  border: 0px solid;
+  height: 400px;
+  width: 600px;
+
+}
+
+.feedEkList{list-style:none outside none;background-color:#FFFFFF; border:1px solid #D3CAD7; padding:4px 3px; color:#3E3E3E;}
+.feedEkList li{border-bottom:1px solid #D3CAD7; padding:5px;}
+.feedEkList li:last-child{border-bottom:none;}
+.itemTitle a{font-weight:bold; color:#4EBAFF !important; text-decoration:none }
+.itemTitle a:hover{ text-decoration:underline }
+.itemDate{font-size:11px;color:#AAAAAA;}
+
+@media  (max-width: 768px) {
+
+  nav img {
+
+  }
+
+  .imagenTitulo{
+    display: none;
+  }
+
+
+}

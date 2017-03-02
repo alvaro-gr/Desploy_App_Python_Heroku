@@ -1,0 +1,149 @@
+{% extends "indexloged.html" %}
+{% block title %}<title>Lawyers</title>{% endblock %}
+{% block head %}
+<script>
+
+var ndocumentos = 0;
+
+  $( document ).ready(function(){
+     paginar(0);
+  });
+
+  function paginar(n){
+    $.ajax({
+      url: '/pagination',
+      data: { offset : n },
+      type: 'GET',
+    })
+    .done(function(data) {     // callback
+      $("#table tbody tr").remove();
+      $("#lista li").remove();
+      addLi(data.Tam);
+      drawTable(data.Datos);
+    });
+  }
+
+  function drawTable(data) {
+    for (var i = 0; i < data.length; i++) {
+      drawRow(data[i]);
+    }
+  }
+
+  function drawRow(rowData) {
+    var row = $("<tr />")
+    $("#table").append(row);
+    row.append($("<td>" + rowData.Name + "</td>"));
+    row.append($("<td>" + rowData.Surname + "</td>"));
+    row.append($("<td>" + rowData.Telf + "</td>"));
+  }
+
+  function addLi(ndocumentos){
+    var n = ndocumentos/10;
+    var offset = 0;
+    for (var i = 1; i < n+1; i++) {
+      var li=document.createElement('li');
+      li.innerHTML="<a onclick='paginar("+offset+")' href='javascript:;'>"+i+"</a>";
+      document.getElementById("lista").appendChild(li);
+      offset = offset + 10;
+    }
+  }
+
+</script>
+
+
+{% endblock %}
+{% block content %}
+
+		<article class="row">
+			<div class="n1 col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<h2>Our Lawyers</h2>
+				<p>
+					This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.
+				</p>
+				<p>
+					You can remove any link to our website from this website template, you're free to use this website template without linking back to us.
+				</p>
+				<p>
+					If you're having problems editing this website template, then don't hesitate to ask for help on the Forums.
+				</p>
+			</div>
+			<div class="n2 col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<h2>Client Testimonials</h2>
+				<p>
+					&ldquo;The best family lawyers in the city so far. Me and my ex-wife didn’t have any<br> problems settling the terms and agreement. Everything went so smoothly. We’re both very happy.&ldquo; <span>- Jared Greene</span>
+				</p>
+			</div>
+		</article>
+
+		<article class="row">
+				<div class="n3 col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <h2>Directors</h2>
+						<img src="../static/images/thumbnail-sideview.jpg" alt="Img" height="94" width="90">
+						<p>$("#table_of_items tr").remove();
+							<b>Pauline H. Wilson</b> This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.You can remove any link to our website from this website template.
+						</p>
+				</div>
+				<div class="n4 col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        </br></br></br>
+						<img src="../static/images/thumbnail-focus.jpg" alt="Img" height="94" width="90">
+						<p>
+							<b>Kenneth E. Lunderberg</b> You're free to use this website template without linking back to us. If you're having problems editing this website template, then don't hesitate to ask for help on the Forums.
+						</p>
+				</div>
+		</article>
+
+		<article class="row">
+				<div class="n5 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<h2>Senior Associates</h2>
+						<img src="../static/images/thumbnail-smile.jpg" alt="Img" height="94" width="90">
+						<p>
+							<b>George R. Montgomery</b> This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.You can remove any link to our website from this website template.
+						</p>
+				</div>
+		</article>
+
+		<article class="row">
+			<div class="n6 col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <h2>Associates</h2>
+				<img src="../static/images/thumbnail-frontview.jpg" alt="Img" height="94" width="90">
+				<p>
+					<b>Denise M. Silvia</b> This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.You can remove any link to our website from this website template.
+				</p>
+			</div>
+			<div class="n7 col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          </br></br></br>
+					<img src="../static/images/thumbnail-happy.jpg" alt="Img" height="94" width="90">
+					<p>
+						<b>Nancy R. Bakken</b> You're free to use this website template without linking back to us. If you're having problems editing this website template, then don't hesitate to ask for help on the Forums.
+					</p>
+			</div>
+		</article>
+
+
+
+		<article class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h4>Contact Lawyers</h4>
+        <table class="table" id="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Telephone</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+				<nav>
+					<ul class="pagination" id="lista">
+
+					</ul>
+				</nav>
+      </div>
+		</article>
+
+	</br>
+	</br>
+	</br>
+{% endblock %}

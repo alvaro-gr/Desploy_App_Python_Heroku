@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}<title>Home</title>{% endblock %}
+{% block head %}
+<script type="text/javascript">
+
+function loadMap(address) {
+  var map2 = new google.maps.Map(document.getElementById('mapa2'), {
+    zoom: 8,
+    center: {lat: 40.41709021757327, lng: -3.7037014961242676}
+  });
+  var geocoder = new google.maps.Geocoder();
+	geocodeAddress(geocoder, map2, address);
+}
+
+function geocodeAddress(geocoder, resultsMap, addr) {
+  var address = String(addr);
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      resultsMap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+function initMap() {
+	var myLatLng = {lat: 40.41709021757327, lng: -3.7037014961242676};
+
+	var map = new google.maps.Map(document.getElementById('mapa'), {
+		center: myLatLng,
+		zoom: 8
+	});
+
+	var marker = new google.maps.Marker({
+		position: myLatLng,
+		map: map,
+		title: 'Here'
+	});
+
+	$.ajax({
+	  url: '/getLocation',
+	  type: 'GET'
+	})
+	.done(function(data) {     // callback
+	  loadMap(data);
+	});
+}
+
+</script>
+{% endblock %}
+{% block header %}
+<header>
+	<nav class="navbar navbar-inverse navbar-fixed-top cabecera">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="index"><img src="../static/images/logo.png" alt="LOGO" height="52" width="362"></a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse navegacion">
+				<ul class="nav navbar-nav">
+					<li><a href="indexloged">Home</a></li>
+					<li><a href="news">News</a></li>
+					<li><a href="lawyers">Lawyers</a></li>
+					<li><a href="info">Profile</a></li>
+					<li><a href="dropsession">Logout</a></li>
+					<li class="nsession">Welcome: {{name}}</li>
+				</ul>
+			</div><!--/.navbar-collapse -->
+		</div>
+	</nav>
+ </header>
+
+ {% endblock %}
+{% block content %}
+			<article class="row">
+					<div class="titulo col-xs-12 col-sm-12 col-md-4 col-lg-6">
+						<h3>It’s never easy...<br> When it comes to family.
+						But we can set<br> everything straight.</h3>
+					</div>
+					<div class="imagenTitulo col-xs-12 col-sm-12 col-md-4 col-lg-6">
+						<img src="../static/images/family-large.jpg" alt="Img" height="382" width="594">
+					</div>
+			</article>
+				</br></br>
+			<article class="row">
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<h4>Find Us</h4>
+						<div id="mapa"></div>
+			  </div>
+				<div class="twi col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<div id="twitter"><a class="twitter-timeline" data-height="350" data-theme="light" href="https://twitter.com/CanalUGR">Tweets by CanalUGR</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Followers</th>
+									<th>Friends</th>
+								</tr>
+							</thead>
+							<tbody>
+									<tr><td>{{followers}}</td><td>{{friends}}</td></tr>
+							</tbody>
+						</table>
+				</div>
+			</article>
+		</br></br>
+			<article class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<h4>Twitter Location</h4>
+							<div id="mapa2"></div>
+				</div>
+			</article>
+
+
+			</br>
+		</br>
+	</br>
+{% endblock %}

@@ -1,0 +1,246 @@
+{% extends "indexloged.html" %}
+{% block title %}<title>News</title>{% endblock %}
+{% block head %}
+<script>
+
+$(document).ready(function(){
+
+  $('#lecrss').FeedEk({
+    FeedUrl : 'http://elpais.com/rss/elpais/portada.xml',
+	  MaxCount : 5,
+    ShowDesc : true,
+    ShowPubDate: true
+  });
+
+  $.ajax({
+    url: '/getData',
+    type: 'GET'
+  })
+  .done(function(data) {  // callback
+    var dat = data.Datos;
+    mostrarGrafico(dat);
+  });
+
+});
+
+
+function mostrarGrafico(datos){
+  var colors = Highcharts.getOptions().colors,
+      categories = ['Divorces', 'Stoles', 'Administration', 'Other'],
+      data = [{
+          y: 40.00,
+          color: colors[0],
+          drilldown: {
+              name: datos[0].name,
+              categories: datos[0].categories,
+              data: datos[0].data,
+              color: colors[0]
+          }
+      }, {
+          y: 20.00,
+          color: colors[1],
+          drilldown: {
+              name: datos[1].name,
+              categories: datos[1].categories,
+              data: datos[1].data,
+              color: colors[1]
+          }
+      }, {
+          y: 30.00,
+          color: colors[2],
+          drilldown: {
+              name: datos[2].name,
+              categories: datos[2].categories,
+              data: datos[2].data,
+              color: colors[2]
+          }
+      }, {
+          y: 10.00,
+          color: colors[3],
+          drilldown: {
+              name: datos[3].name,
+              categories: datos[3].categories,
+              data: datos[3].data,
+              color: colors[3]
+          }
+      }
+      ],
+      browserData = [],
+      versionsData = [],
+      i,
+      j,
+      dataLen = data.length,
+      drillDataLen,
+      brightness;
+
+
+  // Build the data arrays
+  for (i = 0; i < dataLen; i += 1) {
+
+      // add browser data
+      browserData.push({
+          name: categories[i],
+          y: data[i].y,
+          color: data[i].color
+      });
+
+      // add version data
+      drillDataLen = data[i].drilldown.data.length;
+      for (j = 0; j < drillDataLen; j += 1) {
+          brightness = 0.2 - (j / drillDataLen) / 5;
+          versionsData.push({
+              name: data[i].drilldown.categories[j],
+              y: data[i].drilldown.data[j],
+              color: Highcharts.Color(data[i].color).brighten(brightness).get()
+          });
+      }
+  }
+
+  // Create the chart
+  Highcharts.chart('grafica', {
+      chart: {
+          type: 'pie'
+      },
+      title: {
+          text: 'Experience in case types'
+      },
+      subtitle: {
+          text: ''
+      },
+      yAxis: {
+          title: {
+              text: ''
+          }
+      },
+      plotOptions: {
+          pie: {
+              shadow: false,
+              center: ['50%', '50%']
+          }
+      },
+      tooltip: {
+          valueSuffix: '%'
+      },
+      series: [{
+          name: 'Percentage',
+          data: browserData,
+          size: '60%',
+          dataLabels: {
+              formatter: function () {
+                  return this.y > 5 ? this.point.name : null;
+              },
+              color: '#ffffff',
+              distance: -30
+          }
+      }, {
+          name: 'Percentage by type',
+          data: versionsData,
+          size: '80%',
+          innerSize: '60%',
+          dataLabels: {
+              formatter: function () {
+                  // display only if larger than 1
+                  return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y + '%' : null;
+              }
+          }
+      }]
+  });
+}
+
+
+
+</script>
+{% endblock %}
+
+{% block content %}
+		 <article class="row">
+			 <div class="nw1 col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			 	<h2>Recent News</h2>
+				<p>
+					This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.
+				</p>
+				<p>
+					You can remove any link to our website from this website template, you're free to use this website template without linking back to us.
+				</p>
+				<p>
+					If you're having problems editing this website template, then don't hesitate to ask for help on the Forums.
+				</p>
+				</br>
+			 </div>
+
+			 <div class="nw2 col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				 	<h2>Client Testimonials</h2>
+					<p>
+						&ldquo;The best family lawyers in the city so far. Me and my ex-wife didn’t have any<br> problems settling the terms and agreement. Everything went so smoothly. We’re both very happy.&rdquo; <span>- Jared Greene</span>
+					</p>
+			 </div>
+
+		 </article>
+	 	</br>
+		</br>
+		 	<h2>More News</h2>
+
+	 </br>
+	 </br>
+
+		 <article class="row">
+
+			 <div class="nw3 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				 <img src="../static/images/bride-sideview.jpg" alt="Img" height="245" width="213">
+				 <p>
+						31st January 2023 by <span>Manes Winchester</span>
+					</p>
+					<h2>The Basics of Marriage Laws</h2>
+					<p>
+						This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.You can remove any link
+					</p>
+			 </div>
+		 </article>
+
+		 <article class="row">
+			 <div class="nw4 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				 <img src="../static/images/happy.jpg" alt="Img" height="245" width="213">
+				 <p class="info">
+					 31st January 2023 by <span class="author">Manes Winchester</span>
+				 </p>
+				 <h2>Happy Newly Divorced Women</h2>
+				 <p>
+					 This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.You can remove any link
+				 </p>
+			 </div>
+		 </article>
+
+		 <article class="row">
+			 <div class="nw5 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				 <img src="../static/images/children.jpg" alt="Img" height="245" width="213">
+				 <p class="info">
+					 31st January 2023 by <span class="author">Manes Winchester</span>
+				 </p>
+				 <h2>Children &amp; Divorced Parents</h2>
+				 <p>
+					 This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.You can remove any link
+				 </p>
+             </br></br>
+
+			 </div>
+		 </article>
+
+
+     <article class="row">
+       <div id="grafica" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
+     </article>
+
+
+		<article class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3>RSS News</h3></div>
+			<div id="lecrss" class="rss col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
+		</article>
+
+
+
+
+
+</br>
+</br>
+</br>
+{% endblock %}
